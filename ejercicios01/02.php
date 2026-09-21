@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Escalera</title>
 </head>
 <body>
     <?php
@@ -11,10 +11,19 @@
         echo "Número generado " .$numero_azar ."<br>";
 
         for($i=1; $i<=$numero_azar; $i++){
-            for($j=$i; $j<=$i; $j++){
-                echo $i ."<br>";
-                echo $j;
+            if($i%2 != 0){
+                $color = "blue";
+            } else {
+                $color = "red";
+            }
+
+            echo "<font color='$color'>";
+
+            for($j=1; $j<=$i; $j++){
+                echo $i;
+                
             };
+            echo "</font><br>";
         };
     ?>
 </body>
