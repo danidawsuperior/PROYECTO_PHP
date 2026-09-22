@@ -13,23 +13,28 @@
         
         $asteriscos = 1;
         $espacios_blanco = $numero_azar - 1 ;
-
-        echo "<code>";
+    ?>
+        <code>
+        <?php
         for($i=1;$i<=$numero_azar;$i++){
             
             for($j=1;$j<=$espacios_blanco;$j++){
-                echo " " ;
+                echo "&nbsp" ; //Caracter espacio en HTML
             }
            
             for($k=1;$k<=$asteriscos;$k++){
                 echo "*";
             }
-            echo "<br>";
-            $espacios_blanco = $espacios_blanco - 1;
-            $asteriscos = $asteriscos + 2;
+
+            $asteriscos += 2;
+            $espacios_blanco --;
+
+            echo "<br/>";
+
         }
-        echo "</code>";
+        ?>
+        </code>
         
-    ?>
+    
 </body>
 </html>
