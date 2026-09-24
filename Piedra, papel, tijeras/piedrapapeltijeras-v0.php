@@ -39,6 +39,7 @@ function calcularGanador (String $valor1, String $valor2): int{
       if($valor2 == TIJERAS) return 0;
       if($valor2 == PAPEL) return 1;
     }
+    return 0;
 }
 /**
  *  Obtiene un valor aleatorio PIEDRA, PAPEL O TIJERAS
