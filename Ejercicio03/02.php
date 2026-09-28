@@ -3,6 +3,7 @@ Crear un array que almacene 5 cadenas con el nombre de periódicos y sus enlaces
 El array será asociativo con el nombre del periódico como clave y su URL como valor.
 -->
 <?php
+ $periodicos = [];
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ El array será asociativo con el nombre del periódico como clave y su URL como 
 </head>
 <body>
     <table> 
-        
+
     </table>
 </body>
 </html>
