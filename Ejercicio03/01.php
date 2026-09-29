@@ -68,7 +68,7 @@ y el  valor que mas veces se repite. (Nota definir funciones para cada caso)
 <body>
     <h2>Contenido del array</h2>
     <p>
-    <table style='border: 1px solid black; border-collapse';>
+    <table style='border: 1px solid black; border-collapse:collapse';>
         <tr>
             <?php for($i=0;$i<count($array_datos);$i++): ?>
                 <td style='border: 1px solid black; padding: 5px';><?= $array_datos[$i] ?> </td>
