@@ -32,12 +32,18 @@ for ($i = 0; $i < count($meses); $i++) {
             <tr>
                 <td> <?= $nombremes; ?></td>
                 <td>
+                    <!--
+                        Otra forma de mostrar la grafica
+                        <img src='img/cuadro.png' style='width:<?=  2*$tempmes ?>px; height: 10px'>
+                    -->
                     <!-- Problema con la inclusión de salto de linea sin echo -->
+                    
                     <?php for ($j = 0; $j < $tempmes; $j++) {
                        echo "<img src='img/cuadro.png' style='width:2px;'>";
                     }
                     ?>
                     <?= $tempmes?> ºC
+                    
                 </td>
             </tr>
         <?php endforeach ?>
