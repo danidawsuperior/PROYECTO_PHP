@@ -12,6 +12,8 @@ function ordenaPaisPorPoblacion($pais1, $pais2)
 
 // Ordeno utilizando la funcion definida
 uasort($paises, 'ordenaPaisPorPoblacion');
+print_r($paises);
+//die(); // -> Esto lo que hace es finalzar ahí el programa, en vez de poner /* */ en todo el documento
 
 // Obtengo la clave del último elemento del array 
 $pais_max = array_key_last($paises);
