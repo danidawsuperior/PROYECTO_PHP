@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Jugador</title>
+    <style>
+        body {
+            background-color: #9297b4;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            width: 450px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            font-family: monospace;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 5px;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+        }
+        button[type="reset"] {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulario de Jugador</h2>
+    <form action="index.php" method="POST" enctype="multipart/form-data" id="playerForm">
+        
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="alias">Alias:</label>
+            <input type="text" id="alias" name="alias" required>
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required min="1">
+        </div>
+
+        <fieldset>
+            <legend>Armas a elegir (puedes elegir varias):</legend>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="armas[]" value="Maza"> Maza</label>
+                <label><input type="checkbox" name="armas[]" value="Antorcha"> Antorcha</label>
+                <label><input type="checkbox" name="armas[]" value="Martillo"> Martillo</label>
+                <label><input type="checkbox" name="armas[]" value="Látigo"> Látigo</label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>¿Practica artes mágicas?</legend>
+            <div class="radio-group">
+                <label><input type="radio" name="magia" value="Sí" required> Sí</label>
+                <label><input type="radio" name="magia" value="No"> No</label>
+            </div>
+        </fieldset>
+
+        <div class="form-group">
+            <label for="imagen">Subir imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept=".png, .jpeg">
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Enviar</button>
+            <button type="reset">Borrar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('playerForm').addEventListener('submit', function(e) {
+        const fileInput = document.getElementById('imagen');
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            
+            if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
+                alert('Error en cliente: Solo se permiten imágenes de tipo PNG.');
+                e.preventDefault();
+                return;
+            }
+            
+            if (file.size > 10240000) { // 10,240 kB = 10240000 bytes
+                alert('Error en cliente: La imagen no puede superar los 10 Kbytes.');
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
