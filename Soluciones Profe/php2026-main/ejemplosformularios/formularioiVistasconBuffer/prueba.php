@@ -9,6 +9,7 @@ echo " Adios";
 }
 //
 $m = ob_get_clean();
+
 //
 echo " Saludo:".$m;
 

@@ -29,6 +29,7 @@ if ( $_SERVER["REQUEST_METHOD"] == 'GET' or $error ){
     include ("vistas/entrada.php");
 }    
 
+
 // Obtener el contenido del búfer de salida y almacenarlo en la variable $contenido
 $contenido = ob_get_clean();
 
