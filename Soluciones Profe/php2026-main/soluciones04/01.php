@@ -24,7 +24,15 @@ if (empty($_REQUEST['nombre']) ||  empty($_REQUEST['clave'])) {
     // PELIGRO: No controlo la seguridad de las entradas
     $usuario = $_REQUEST['nombre'];
     $clave   = $_REQUEST['clave'];
-    if (array_key_exists($usuario, $tusuarios) &&  $tusuarios[$usuario] == $clave) {
+
+    $encontrado = false;
+    foreach ( $tusuarios as $usuariot => $clavet) {
+          if ( $usuariot == $usuario && $clavet == $clave ){
+            $encontrado = true;
+            break;
+          }
+    }
+    if ( $encontrado ) {
         $msg = " Bienvenido $usuario al sistema ";
     } else {
         $msg = "Error: Usuario y contraseña no válidos.<br> ";

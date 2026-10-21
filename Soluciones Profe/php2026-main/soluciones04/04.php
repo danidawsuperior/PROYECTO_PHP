@@ -11,7 +11,15 @@
 		</div>
 
 		<div id="content">
+		<pre>
+		<?php
+		print_r($_REQUEST);
+		?>	
+		</pre>
 		<?php 
+
+ 
+
 		
 		// Se declara una variable para cada campo del formulario y se inicializa a vacío
 		$nombre= '';
