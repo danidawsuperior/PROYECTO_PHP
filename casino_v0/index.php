@@ -14,7 +14,7 @@ $msg="";
 
 // Entra en el casino --------------------------------
 if (! isset($_SESSION['disponible'])) {
-  return true;
+  
     // No continuo despues de mostrar los formularios
     exit();
 }
