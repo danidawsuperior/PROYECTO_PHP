@@ -9,7 +9,14 @@ require_once ('dat/datos.php');
  */
 function userOk($login,$clave):bool {
     global $usuarios;
-    return true;
+
+    foreach ($usuarios as $loginuser => $datosuser) {
+        if($login == $loginuser && $clave == $datosuser[1] ){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
@@ -18,8 +25,9 @@ function userOk($login,$clave):bool {
  *  @return ROL_ALUMNO o ROL_PROFESOR
  */
 function getUserRol($login){
-    
-    return ROL_ALUMNO;
+    global $usuarios;
+
+    return $usuarios[$login][2];
 }
 
 /**

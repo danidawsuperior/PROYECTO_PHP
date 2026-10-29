@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Cambiar  visitar --> VALOR DE COOKIE
+// Cambiar  visitar --> VALOR DE COOKIE  $_COOKIE['visitas'] 
 // Cambiar disponible --> VALOR DE SESSION
 $_SESSION['disponible'] = 1000;
 $visitas = 1;  
