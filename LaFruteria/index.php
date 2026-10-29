@@ -16,7 +16,7 @@ if (isset($_GET['cliente']) && !isset($_SESSION['cliente']) ) {
 
 // No hay definido un cliente todavía en la session 
 if (!isset($_SESSION['cliente'])) {
-    require_once 'bienvenida.php';
+    require_once 'vistas/bienvenida.php';
     exit();
 }
 
@@ -41,7 +41,7 @@ if (isset($_POST["accion"])) {
         case " Terminar ":
             $compraRealizada = htmlTablaPedidosImportes($precios);
             // Destruyo la sesión y vuelvo a la página de bienvenida
-            require_once 'despedida.php';
+            require_once 'vistas/despedida.php';
             session_destroy();
             exit();
             break;
@@ -50,7 +50,7 @@ if (isset($_POST["accion"])) {
 }
 
 $compraRealizada = htmlTablaPedidosImportes($precios);
-require_once 'compra.php';
+require_once 'vistas/compra.php';
 
 
 // Función axiliar que genera una tabla HTML a partir  la tabla de pedidos
