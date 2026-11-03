@@ -4,6 +4,16 @@
         private int $edad;
         private string $nombre;
 
+        function mensajeEdad (int $años):string{
+            if($años < 18){
+                return "Precio infantil";
+            } else if($años < 30){
+                return "Precio joven";
+            } else {
+                return "Precio adulto";
+            }
+        }
+
         function cumplirAños ():void {
             $this->edad++;
         }
