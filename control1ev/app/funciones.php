@@ -7,9 +7,9 @@ require_once ('dat/datos.php');
  *  @param $clave : Clave del usuario
  *  @return true o false
  */
-function userOk($login,$clave):bool {
+function userOk(string $login, string $clave):bool {
     global $usuarios;
-
+    
     foreach ($usuarios as $loginuser => $datosuser) {
         if($login == $loginuser && $clave == $datosuser[1] ){
             return true;
@@ -24,7 +24,7 @@ function userOk($login,$clave):bool {
  *  @param $login: código de usuario
  *  @return ROL_ALUMNO o ROL_PROFESOR
  */
-function getUserRol($login){
+function getUserRol(string $login){
     global $usuarios;
 
     return $usuarios[$login][2];

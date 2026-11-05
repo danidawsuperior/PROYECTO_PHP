@@ -13,7 +13,6 @@ class CuentaBancariaConCredito extends CuentaBancaria
     
     // Constructores
     public function __construct(int $saldo = 0, $interes =0.10){
-        //Esto se hace para llamar al constructor padre
         parent::__construct($saldo);
         $this->interes = $interes;
     }

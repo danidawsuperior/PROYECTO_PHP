@@ -7,7 +7,7 @@ include_once 'MotorInterface.php';
 class Molino implements MotorInterface
 {
     private bool $compuerta;
-    private string $presion;
+    private int $presion;
     private int $aspas;
     
     function __construct(int $aspas){
@@ -43,7 +43,7 @@ class Molino implements MotorInterface
                "Presión   :".$this->presion."\n";
     }
 
-    public function darpresion(int $presion){
+    public function darpresion( int $presion){
         $this->presion = $presion;
     }
 }
