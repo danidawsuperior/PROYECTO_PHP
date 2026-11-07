@@ -23,15 +23,17 @@ function cargarbicis(): array
 function mostrartablabicis($tabla): string
 {
     $cadena = "<table><tr><th>Id</th><th>Coord X</th><th>Cood Y</th><th>Bateria</th></tr>";
-    foreach ($tabla as $bici){
-    $bici->id  ;  
-    $cadena .= "<td>".$bici."</td>";
-        
-        
+    foreach ($tabla as $bici) {
+        $cadena .= "<tr>";
+        $cadena .= "<td>" .$bici->id. "</td>";
+        $cadena .= "<td>" .$bici->coordx. "</td>";
+        $cadena .= "<td>" .$bici->coordy. "</td>";
+        $cadena .= "<td>" .$bici->bateria. "</td>";
+        $cadena .= "</tr>";
     }
-    $cadena .="</table>";
-
+    $cadena .= "</table>";
     return $cadena;
+
 }
 
 
@@ -43,10 +45,25 @@ function mostrartablabicis($tabla): string
  * @param $y - Coordenada x de usuario
  * @return bicicleta más cercana o null
  */
-function bicimascercana($tabla, $x, $y)
+function bicimascercana($x, $y, $tabla)
 {
+    if(empty($tabla)){
+        return null;
+    }
+
     $bicicerca = null;
+    $distanciaminima = 9999999;
+
+    foreach($tabla as $bici){
+
+        $distanciabiciactual = $bici->distancia($x,$y);
+
+        if($distanciabiciactual < $distanciaminima){
+            $distanciaminima = $distanciabiciactual;
+            $bicicerca = $bici;
+        }
+    }
     
+
     return $bicicerca;
 }
-
