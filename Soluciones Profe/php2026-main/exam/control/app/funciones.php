@@ -63,12 +63,12 @@ function verNotasAlumno($codigo):String{
  *  @param $codigo: Código del profesor
  *  @return $devuelve una cadena con una tabla html con los resultados 
  */
-function verNotaTodas ($codigou): String {
+function verNotaTodas ($codigo): String {
     $msg="";
     global $nombreModulos;
     global $notas;
     global $usuarios;
-    $msg .= " Bienvenido Profesor: ".$usuarios[$codigou][0];
+    $msg .= " Bienvenido Profesor: ".$usuarios[$codigo][0];
     $msg .= "<hr><table>";
     $msg .= "<th >Nombre </th>";
     foreach ($nombreModulos as $modulo) {
