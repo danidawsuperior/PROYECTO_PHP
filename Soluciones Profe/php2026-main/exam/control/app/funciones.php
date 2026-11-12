@@ -7,7 +7,7 @@ require_once ('dat/datos.php');
  *  @param $clave : Clave del usuario
  *  @return true o false
  */
-function userOk($login,$clave):bool {
+function userOk(string $login, string $clave):bool {
     global $usuarios;
     // Si existe el usuario 
     if ( key_exists($login,$usuarios)){
@@ -21,7 +21,7 @@ function userOk($login,$clave):bool {
  *  @param $login: código de usuario
  *  @return ROL_ALUMNO o ROL_PROFESOR
  */
-function getUserRol($login){
+function getUserRol(string $login){
     global $usuarios;
     // Devuelvo el rol, se supone que login es correcto existe
     return $usuarios[$login][2];
@@ -33,7 +33,7 @@ function getUserRol($login){
  *  @param $codigo: Código del usuario
  *  @return $devuelve una cadena con una tabla html con los resultados 
  */
-function verNotasAlumno($codigo):String{
+function verNotasAlumno(string $codigo):String{
     $msg="";
     global $nombreModulos;
     global $notas;
@@ -63,12 +63,12 @@ function verNotasAlumno($codigo):String{
  *  @param $codigo: Código del profesor
  *  @return $devuelve una cadena con una tabla html con los resultados 
  */
-function verNotaTodas ($codigo): String {
+function verNotaTodas (string $codigou): String {
     $msg="";
     global $nombreModulos;
     global $notas;
     global $usuarios;
-    $msg .= " Bienvenido Profesor: ".$usuarios[$codigo][0];
+    $msg .= " Bienvenido Profesor: ".$usuarios[$codigou][0];
     $msg .= "<hr><table>";
     $msg .= "<th >Nombre </th>";
     foreach ($nombreModulos as $modulo) {

@@ -3,19 +3,22 @@
 class Usuario
 {
 
-    private $login;
-    private $nombre;
-    private $password;
-    private $comentario;
+    private string $login;
+    private string $nombre;
+    private string $password;
+    private string $comentario;
 
-    function __get($name)
+    function __get(string $name)
     {
         if (property_exists($this, $name)) {
+            if ($name == "comentario"){
+                return "Sin comentario";
+            }
             return $this->$name;
         }
     }
 
-    function __set($name, $value)
+    function __set(string $name, mixed $value)
     {
         if (property_exists($this, $name)) {
             return $this->$name = $value;

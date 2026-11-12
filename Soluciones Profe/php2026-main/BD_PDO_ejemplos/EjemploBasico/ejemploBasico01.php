@@ -12,11 +12,11 @@ include_once 'Usuario.php';
 
 // 1) Establezco la conexión con la BD Usuarios
 ////////////////////////////////////////////////
-$datosconexion = "mysql:host=localhost;dbname=Usuarios;charset=utf8";
+$datosconexion = "mysql:host=10.10.0.244;dbname=Usuarios;charset=utf8";
 
 try {
     // Creo el objeto PDO estableciendo la conexión a la BD
-    $dbh = new PDO($datosconexion, "root", "");
+    $dbh = new PDO($datosconexion, "root", "root");
     // Si falla genera una excepción y no emula la senticas preparadas
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -112,6 +112,7 @@ $stmt2->execute();
 
 echo " <br> INSERT Se han afectado ". $stmt2->rowCount()." filas <br>";
 // rowCount es util en DELETE/DELETE/INSERT
+
 
 $stmt3 = $dbh->prepare(" DELETE from Usuarios Where nombre='Pepe'");
 $stmt3->execute();
