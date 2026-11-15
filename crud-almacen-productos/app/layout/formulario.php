@@ -30,8 +30,7 @@
                     <td>
                         <input type="text" id="nombre" name="nombre" 
                                value="<?= $producto->nombre ?>" 
-                               <?= ($orden == "Detalles") ? "readonly" : "" ?> 
-                               autofocus>
+                               <?= ($orden == "Detalles") ? "readonly" : "" ?>>
                     </td>
                 </tr>
                 <tr>
