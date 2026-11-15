@@ -21,7 +21,8 @@
                     <td>
                         <input type="text" id="codigo" name="codigo"
                                 value="<?= $producto -> codigo ?>"
-                                <?= ($orden == "Detalles" || $orden == "Modificar") ? "readonly" : ""?>>
+                                <?= ($orden == "Detalles" || $orden == "Modificar") ? "readonly" : ""?>
+                                autofocus>
                     </td>
                 </tr>
                 <tr>
