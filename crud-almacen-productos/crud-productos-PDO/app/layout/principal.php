@@ -2,19 +2,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CRUD DE USUARIOS</title>
+<title>CRUD DE PRODUCTOS</title>
 <link href="web/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="web/js/funciones.js"></script>
 </head>
 <body>
 <div id="container" >
 <div id="header">
-<h1>GESTIÓN DE USUARIOS versión 1.1 + BD (PDO)</h1>
+<h1>GESTIÓN DE PRODUCTOS versión 1.1 + BD (PDO)</h1>
 </div>
 <div id="content">
 <?= $contenido ?>
 <form>
-<button name="orden" value="Nuevo"> ➕ Nuevo Usuario </button>
+<button name="orden" value="Nuevo"> ➕ Nuevo Producto </button>
 <button name="orden" value="Terminar"> 🚪 Salir </button>
 </form>
 </div>

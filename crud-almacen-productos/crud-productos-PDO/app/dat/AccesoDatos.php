@@ -3,7 +3,7 @@ include_once "app/dat/Productos.php";
 include_once "app/config.php";
 
 /*
- * Acceso a datos con BD Usuarios y Patrón Singleton 
+ * Acceso a datos con BD Produsctos y Patrón Singleton 
  * Un único objeto para la clase
  * VERSION 1:  las sentencias precompiladas ser crean en cada función
  */
@@ -30,7 +30,7 @@ class AccesoDatos {
         try {
             $dsn = "mysql:host=".SERVER_DB.";dbname=".DATABASE.";charset=utf8";
             // Creo el objeto PDO estableciendo la conexión a la BD
-            $this->dbh = new PDO($dsn,DB_USER,DB_PASSWD);
+            $this->dbh = new PDO($dsn,DB_PRODU,DB_PASSWD);
             // Si falla genera una excepción
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
@@ -49,72 +49,73 @@ class AccesoDatos {
     }
 
 
-    // Devuelvo un array de objeto de Usuarios
-    public function getUsuarios ():array {
-        $tuser = [];
+    // Devuelvo un array de objeto de Productos
+    public function getProductos ():array {
+        $tprodus = [];
         // Sobre la conexión PDO prepara la consulta;
-        $stmt_usuarios  = $this->dbh->prepare("select * from Productos");
+        $stmt_productos  = $this->dbh->prepare("select * from Productos");
         // Los resultados se devuelven como objetos de la clase Usuarios
-        $stmt_usuarios->setFetchMode(PDO::FETCH_CLASS, 'Productos');
+        $stmt_productos->setFetchMode(PDO::FETCH_CLASS, 'Productos');
         
         // Ejecuto la sentencias 
-        if ( $stmt_usuarios->execute() ){
-            //$tuser = $stmt_usuarios->fetchAll();
-            // Mientra $user no sea false, sea un objeto
-            while ( $user = $stmt_usuarios->fetch()){
+        if ( $stmt_productos->execute() ){
+            //$tprodus = $stmt_productos->fetchAll();
+            // Mientra $productos no sea false, sea un objeto
+            while ( $productos = $stmt_productos->fetch()){
                // añado ese objeto a la tabla
-               $tuser[]= $user;
+               $tprodus[]= $productos;
             }
         }
         
 
-        return $tuser;
+        return $tprodus;
     }
     
-    // Devuelvo un usuario o false
-    public function getUsuario (String $login) {
-        $user = false;
-        $stmt_usuario   = $this->dbh->prepare("select * from Usuarios where login=:login");
-        $stmt_usuario->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
-        $stmt_usuario->bindParam(':login', $login);
-        if ( $stmt_usuario->execute() ){
+    // Devuelvo un producto o false
+    public function getProducto (String $codigo) {
+        $producto = false;
+        $stmt_producto   = $this->dbh->prepare("select * from Productos where codigo=:codigo");
+        $stmt_producto->setFetchMode(PDO::FETCH_CLASS, 'Productos');
+        $stmt_producto->bindParam(':codigo', $codigo);
+        if ( $stmt_producto->execute() ){
              // Solo hay un objeto
-             if ( $obj = $stmt_usuario->fetch()){
-                $user= $obj;
+             if ( $obj = $stmt_producto->fetch()){
+                $producto= $obj;
             }
         }
-        return $user;
+        return $producto;
     }
     
     // UPDATE
-    public function modUsuario($user):bool{
+    public function modProducto($producto):bool{
       
-        $stmt_moduser   = $this->dbh->prepare("update Usuarios set nombre=:nombre, password=:password, comentario=:comentario where login=:login");
-        $stmt_moduser->bindValue(':login',$user->login);
-        $stmt_moduser->bindValue(':nombre',$user->nombre);
-        $stmt_moduser->bindValue(':password',$user->password);
-        $stmt_moduser->bindValue(':comentario',$user->comentario);
-        $stmt_moduser->execute();
+        $stmt_modprodu   = $this->dbh->prepare("update Productos set nombre=:nombre, stock=:stock, stock_min=:stock_min, precio=:precio where codigo=:codigo");
+        $stmt_modprodu->bindValue(':codigo',$producto->codigo);
+        $stmt_modprodu->bindValue(':nombre',$producto->nombre);
+        $stmt_modprodu->bindValue(':stock',$producto->stock);
+        $stmt_modprodu->bindValue(':stock_min',$producto->stock_min);
+        $stmt_modprodu->bindValue(':precio',$producto->precio); 
+        $stmt_modprodu->execute();
         // El número de filas modificadas debe ser 1
-        $resu = ($stmt_moduser->rowCount () == 1);
+        $resu = ($stmt_modprodu->rowCount () == 1);
         return $resu;
     }
 
     //INSERT
-    public function addUsuario($user):bool{
-        $stmt_creauser  = $this->dbh->prepare("insert into Usuarios (login,nombre,password,comentario) Values(?,?,?,?)");
-        //$stmt_creauser->bindValue(1,$user->login);
-        $stmt_creauser->execute( [$user->login, $user->nombre, $user->password, $user->comentario]);
-        $resu = ($stmt_creauser->rowCount () == 1);
+    public function addProducto($producto):bool{
+        $stmt_creaprodu  = $this->dbh->prepare("insert into Productos (codigo,nombre,stock,stock_min,precio) Values(?,?,?,?,?)");
+        //$stmt_creaprodu->bindValue(1,$producto->codigo);
+        $stmt_creaprodu->execute( [$producto->codigo, $producto->nombre, $producto->stock, $producto->stock_min, $producto->precio]);
+        $resu = ($stmt_creaprodu->rowCount () == 1);
         return $resu;
     }
 
     //DELETE
-    public function borrarUsuario(String $login):bool {
-        $stmt_boruser = $this->dbh->prepare("delete from Usuarios where login =:login");
-        $stmt_boruser->bindValue(':login', $login);
-        $stmt_boruser->execute();
-        $resu = ($stmt_boruser->rowCount () == 1);
+    public function borrarProducto(String $nombre):bool {
+        $stmt_borproducto = $this->dbh->prepare("delete from Productos where nombre =:nombre");
+        $stmt_borproducto->bindValue(':nombre', $nombre);
+        $stmt_borproducto->execute();
+        $resu = ($stmt_borproducto->rowCount () == 1);
         return $resu;
     }   
     

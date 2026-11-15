@@ -3,7 +3,7 @@
 // MUESTRA TODOS LOS USUARIOS
 function mostrarDatos (){
     
-    $titulos = [ "Nombre","login","Password","Comentario"];
+    $titulos = [ "Codigo","Nombre","Stock","Stock_min","Precio"];
     $msg = "<table>\n";
      // Identificador de la tabla
     $msg .= "<tr>";
@@ -13,16 +13,17 @@ function mostrarDatos (){
     $msg .= "</tr>";
     $auto = $_SERVER['PHP_SELF'];
     $db = AccesoDatos::getModelo();
-    $tuser = $db->getUsuarios();
-    foreach ($tuser as $user) {
+    $tproducto = $db->getProductos();
+    foreach ($tproducto as $producto) {
         $msg .= "<tr>";
-        $msg .= "<td>$user->nombre</td>";
-        $msg .= "<td>$user->login</td>";
-        $msg .= "<td>$user->password</td>";
-        $msg .= "<td>$user->comentario</td>";
-        $msg .="<td><a href=\"#\" onclick=\"confirmarBorrar('$user->nombre','$user->login');\" >🗑️</a></td>\n";
-        $msg .="<td><a href=\"".$auto."?orden=Modificar&id=$user->login\">✏️</a></td>\n";
-        $msg .="<td><a href=\"".$auto."?orden=Detalles&id=$user->login\" >👁️</a></td>\n";
+        $msg .= "<td>$producto->codigo</td>";
+        $msg .= "<td>$producto->nombre</td>";
+        $msg .= "<td>$producto->stock</td>";
+        $msg .= "<td>$producto->stock_min</td>";
+        $msg .= "<td>$producto->precio</td>";
+        $msg .="<td><a href=\"#\" onclick=\"confirmarBorrar('$producto->codigo','$producto->nombre');\" >🗑️</a></td>\n";
+        $msg .="<td><a href=\"".$auto."?orden=Modificar&codigo=$producto->codigo\">✏️</a></td>\n";
+        $msg .="<td><a href=\"".$auto."?orden=Detalles&codigo=$producto->codigo\" >👁️</a></td>\n";
         $msg .="</tr>\n";
         
     }

@@ -1,9 +1,9 @@
 /**
  * Funciones auxiliares de javascripts 
  */
-function confirmarBorrar(nombre,id){
-  if (confirm("¿Quieres eliminar el usuario:  "+nombre+"?"))
+function confirmarBorrar(codigo,nombre){
+  if (confirm("¿Quieres eliminar el producto:  "+codigo+"?"))
   {
-   document.location.href="?orden=Borrar&id="+id;
+   document.location.href="?orden=Borrar&codigo="+nombre;
   }
 }
