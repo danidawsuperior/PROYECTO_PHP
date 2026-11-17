@@ -36,8 +36,37 @@ class AccesoDatos {
         trigger_error('La clonación no permitida', E_USER_ERROR); 
     }
 
-    function getsVuelos ($destino,$plazas){
+    public function hayVuelo (string $destino): bool{
+        $resu = false;
+        $stmt = $this->dbh->prepare("Select * from Vuelos where destino = :destino limit 1");
+        $stmt->bindValue(":destino", $destino);
+        $stmt->setFetchMode(PDO::FETCH_CLASS,"Vuelo");
+        if($stmt->execute()){
+            if($stmt->fetch()){
+                $resu = true;
+            }
+        }
+        return $resu;
+    }
 
+    // ACTUALIZO EL COOKIE
+   /* $nconsultas = 0;
+    if (isset($_COOKIE['consultas'])){
+        $nconsultas = $_COOKIE['consultas'];
+    }
+    $nconsultas++;
+    setcookie();*/
+
+    public function getVuelos (string $destino, int $plazas):array {
+        $tresu = [];
+        $stmt = $this->dbh->prepare("Select * from Vuelos where destino = :destino and asientos_libres >= :plazas");
+        $stmt->bindValue(":destino", $destino);
+        $stmt->bindValue(":plazas", $plazas);
+        $stmt->setFetchMode(PDO::FETCH_CLASS,"Vuelo");
+        if($stmt->execute()){
+            $tresu = $stmt->fetchAll();
+        }
+        return $tresu;
     }
 
 

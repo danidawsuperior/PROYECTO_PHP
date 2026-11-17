@@ -102,10 +102,8 @@
     <img src="../logo.png" alt="Logo" class="logo-img">
     
     <div class="icon-no-results">📍 </div>
-    
-    <h1>Sin disponibilidad en <span class="city-name"></B> DESTINO_PHP</B></span></h1>
-     
-    <p> <B> MENSAJE DE ERROR PHP </B></p>
+         
+    <p> <B> <?$mensajeError?> </B></p>
     <div class="button-group">
         <a href="../index.php" class="btn btn-primary">INTENTAR OTRA DESTINO</a>
     </div>

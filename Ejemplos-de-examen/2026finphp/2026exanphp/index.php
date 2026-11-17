@@ -1,5 +1,19 @@
 <?php
+function checkOferta():string {
+    $msg = "";
+    $nconsultas = 0;
+    if(isset ($_COOKIE['consultas'])){
+        $nconsultas = $_COOKIE['consultas'];
+    }
 
+    if($nconsultas > 3){
+        $msg = "Ofertas especiales para nuestros socios";
+    }
+    $nconsultas++;
+    setcookie('consultas',$nconsultas);
+    
+    return $msg;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

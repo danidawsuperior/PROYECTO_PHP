@@ -136,29 +136,16 @@
         </thead>
         <tbody>
             <!-- Tabla a genera en PHP -->
+             <?php foreach($listaVuelos as $vuelo) :?>
           <tr>
-                <td><strong>Pacific Fly</strong></td>
-                <td>Turista</td>
-                <td class="price">100.00€</td>
-                <td>Disponible</td>
+                <td><strong><?= $vuelo->aerolinea ?></strong></td>
+                <td><?= verClase($vuelo->clase) ?></td>
+                <td class="price"><?= $vuelo->precio_billete ?></td>
+                <td><?= verEstado($vuelo->asientos_libres) ?></td>
                 <td><a href="#" class="btn-book">RESERVAR</a></td>
             </tr>
 
-            <tr>
-                <td><strong>LAN Airways</strong></td>
-                <td>Business</td>
-                <td class="price">920.00€</td>
-                <td><span style="color: red; font-weight: bold;">Últimas plazas</span></td>
-                <td><a href="#" class="btn-book">RESERVAR</a></td>
-            </tr>
-
-            <tr>
-                <td><strong>THAI Air</strong></td>
-                <td>First Class</td>
-                <td class="price">1450.00€</td>
-                <td>Disponible</td>
-                <td><a href="#" class="btn-book">RESERVAR</a></td>
-            </tr> 
+            <?php endforeach?>
         </tbody>
     </table>
 
