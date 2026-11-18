@@ -5,7 +5,6 @@ require_once "AccesoDatos.php";
 
 
 $mensajeError = "";
-$codigo_cliente = $_GET['cod_cliente'];
 $nombre_cliente = $_GET['nombre'];
 $clave_cliente = $_GET['clave'];
 
@@ -27,11 +26,12 @@ if (!$hayCliente){
 }
 
 //Hacer GetId para transformar de nombre a id
+$codigo_cliente = $hayCliente->cod_cliente;
 
 $listaPedidos = $ac->getPedidos($codigo_cliente);
 
 if ( count($listaPedidos) == 0){
-    $mensajeError = " ERROR: No hay pedidos para el cliente ".$codigo_cliente;
+    $mensajeError = " ERROR: Lo sentimos " .$nombre_cliente. " no hay pedidos para usted ";
     include 'vistaerror.php';
     die();
 } 

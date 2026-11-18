@@ -1,11 +1,13 @@
-<?php 
+<?php
+
 /**
  *  Genera una cadena un texto de la clase -> 1: Turista, 2: Business, 3: First Class
  * @param int $num
  * @return string - Texto asociado al valor del número
  */
-function verClase( int $num):string {
-    $tabla = ["1" => "Turista", "2" => "Bussines", "3" => "First Class"] ;    
+function verClase(int $num): string
+{
+    static $tabla = ["1" => "Turista", "2" => "Bussines", "3" => " First Class"];
     return $tabla[$num];
 };
 
@@ -15,8 +17,9 @@ function verClase( int $num):string {
  * @param int $plazas
  * @return string
  */
-function verEstado ( int $plazas):string {
-    if($plazas > 10){
+function verEstado(int $plazas): string
+{
+    if ($plazas > 10) {
         return "Disponible";
     } else {
         return "Últimas plazas";

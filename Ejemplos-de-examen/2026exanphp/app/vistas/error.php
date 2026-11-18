@@ -103,7 +103,7 @@
     
     <div class="icon-no-results">📍 </div>
          
-    <p> <B> <?$mensajeError?> </B></p>
+    <p><?= $mensajeError?></p>
     <div class="button-group">
         <a href="../index.php" class="btn btn-primary">INTENTAR OTRA DESTINO</a>
     </div>

@@ -54,7 +54,7 @@ class AccesoDatos {
         $resu = [];
         $stmt = $this->dbh->prepare("select * from pedidos where cod_cliente =:codigo_cliente");
         $stmt->bindValue(":codigo_cliente",$codigo_cliente);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Pedidos');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Pedido');
         if ( $stmt->execute()) {
             $resu = $stmt->fetchAll();    
         }

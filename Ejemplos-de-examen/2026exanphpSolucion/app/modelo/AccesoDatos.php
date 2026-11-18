@@ -20,8 +20,8 @@ class AccesoDatos {
     private function __construct(){
         // Cambiar le password !!!!!
         try {
-            $dsn = "mysql:host=localhost;dbname=vuelosDB;charset=utf8";
-            $this->dbh = new PDO($dsn, "root", "");
+            $dsn = "mysql:host=localhost;dbname=airflyDB;charset=utf8";
+            $this->dbh = new PDO($dsn, "root", "root");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
             echo "Error de conexión ".$e->getMessage();

@@ -20,7 +20,7 @@ class AccesoDatos {
     private function __construct(){
         // Cambiar le password !!!!!
         try {
-            $dsn = "mysql:host=localhost;dbname=VuelosDB;charset=utf8";
+            $dsn = "mysql:host=localhost;dbname=vuelosDB;charset=utf8";
             $this->dbh = new PDO($dsn, "root", "");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
@@ -49,13 +49,6 @@ class AccesoDatos {
         return $resu;
     }
 
-    // ACTUALIZO EL COOKIE
-   /* $nconsultas = 0;
-    if (isset($_COOKIE['consultas'])){
-        $nconsultas = $_COOKIE['consultas'];
-    }
-    $nconsultas++;
-    setcookie();*/
 
     public function getVuelos (string $destino, int $plazas):array {
         $tresu = [];

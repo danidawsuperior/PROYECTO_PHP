@@ -94,6 +94,7 @@ function checkOferta():string {
     
     <h2>¿A QUÉ DESTINO DESEA VIAJAR?</h2>
       <!--- MENAJE DE COOKIE ---->
+    <p></p><h2><b><?= checkOferta();?></b> </h2></p>
     <form action="app/buscarVuelo.php" method="GET">
         <div class="input-group">
             <label for="destino">DESTINO:</label>

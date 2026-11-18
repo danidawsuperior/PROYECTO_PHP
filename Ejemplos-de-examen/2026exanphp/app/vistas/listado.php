@@ -121,7 +121,7 @@
 <div class="container">
     <header>
         <img src="../logo.png" alt="Global Flights" class="logo-img">
-        <h1>Vuelos disponibles a <span class="city-badge">DESTINOXXX</span></h1>
+        <h1>Vuelos disponibles a <span class="city-badge"><?= $destino?></span></h1>
     </header>
      
     <table>
