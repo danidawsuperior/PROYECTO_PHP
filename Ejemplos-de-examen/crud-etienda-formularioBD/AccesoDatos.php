@@ -1,5 +1,6 @@
 <?php
-require_once "Vuelo.php";
+require_once "Cliente.php";
+require_once "Pedido.php";
 /*
  * Acceso a datos con BD y Patrón Singleton
  */
@@ -20,8 +21,8 @@ class AccesoDatos {
     private function __construct(){
         // Cambiar le password !!!!!
         try {
-            $dsn = "mysql:host=localhost;dbname=airflyDB;charset=utf8";
-            $this->dbh = new PDO($dsn, "root", "root");
+            $dsn = "mysql:host=localhost;dbname=etienda;charset=utf8";
+            $this->dbh = new PDO($dsn, "root", "");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
             echo "Error de conexión ".$e->getMessage();
@@ -36,26 +37,24 @@ class AccesoDatos {
         trigger_error('La clonación no permitida', E_USER_ERROR); 
     }
 
-    public function hayVuelos (string $destino):bool{
-        $resu = false;
-        $stmt = $this->dbh->prepare("select * from Vuelos where destino =:destino limit 1");
-        $stmt->bindValue(":destino",$destino);
+    public function hayCliente (string $nombre_cliente, string $clave_cliente){
+        $resu = null;
+        $stmt = $this->dbh->prepare("select * from clientes where nombre =:nombre_cliente and clave =:clave_cliente ");
+        $stmt->bindValue(":nombre_cliente",$nombre_cliente);
+        $stmt->bindValue(":clave_cliente",$clave_cliente);
     
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Vuelo');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Cliente');
         if ( $stmt->execute()) {
-            if ( $stmt->fetch()){
-                $resu = true;
-            }
+            $resu = $stmt->fetch();
         }
         return $resu;
     }
 
-    public function getVuelos(string $destino, int $plazas):array{
+    public function getPedidos(string $codigo_cliente):array{
         $resu = [];
-        $stmt = $this->dbh->prepare("select * from Vuelos where destino =:destino and asientos_libres >= :plazas");
-        $stmt->bindValue(":destino",$destino);
-        $stmt->bindValue(":plazas" ,$plazas);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Vuelo');
+        $stmt = $this->dbh->prepare("select * from pedidos where cod_cliente =:codigo_cliente");
+        $stmt->bindValue(":codigo_cliente",$codigo_cliente);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Pedidos');
         if ( $stmt->execute()) {
             $resu = $stmt->fetchAll();    
         }
