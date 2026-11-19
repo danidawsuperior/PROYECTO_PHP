@@ -27,7 +27,7 @@ if (!$hayCliente){
 
 //Hacer GetId para transformar de nombre a id
 $codigo_cliente = $hayCliente->cod_cliente;
-
+$ac->incrementarVeces($hayCliente->cod_cliente);
 $listaPedidos = $ac->getPedidos($codigo_cliente);
 
 if ( count($listaPedidos) == 0){

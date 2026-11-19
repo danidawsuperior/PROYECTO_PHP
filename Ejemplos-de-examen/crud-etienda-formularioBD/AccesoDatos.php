@@ -61,6 +61,12 @@ class AccesoDatos {
         return $resu;  
     }
 
+    public function incrementarVeces(int $codigo){
+        $stmt = $this -> dbh ->prepare("update clientes set veces = veces + 1 where cod_cliente =:codigo");
+        $stmt -> bindValue(":codigo",$codigo);
+        $stmt -> execute();
+    }
+
 
   
 }

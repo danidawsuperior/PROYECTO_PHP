@@ -15,6 +15,10 @@ class CuentaBancaria
     //   METODOS:
     // -------------------------------------
     
+    public static function getNumCuentas ():int {
+       return self::$numCuentas;
+    }
+
     // Constructores
     public function __construct(int $saldo = 0){
         $this->saldo = $saldo;

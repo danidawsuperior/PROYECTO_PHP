@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,9 @@
 
     <div class="container">
         <header>
-            <h1>Pedidos de <span class="city-badge"><?= $nombre_cliente ?> </span> con código de cliente: <?= $codigo_cliente ?></h1>
+            <h1>Pedidos de <span class="city-badge"><?= $nombre_cliente ?> </span> 
+            con código de cliente: <?= $codigo_cliente ?></h1>
+            Has entrado <?= $hayCliente -> veces  ?> veces
         </header>
 
         <table>

@@ -30,14 +30,8 @@ class AccesoDatos {
     private function __construct(){
         
         try {
-            //Para la maquina virtual
-            //$dsn = "mysql:host=10.10.12.10;dbname=database";
-            //Para el localhost
             $dsn = "mysql:host=localhost;dbname=database";
-            $this->dbh = new PDO($dsn, "root", "");
-            //Para la maquina virtual
-            //$this->dbh = new PDO($dsn, "root", "root");
-
+            $this->dbh = new PDO($dsn, "root", "root");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute( PDO::ATTR_EMULATE_PREPARES, FALSE );
         } catch (PDOException $e){

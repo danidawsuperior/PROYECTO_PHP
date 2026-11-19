@@ -8,7 +8,7 @@ class Usuario
     private string $password;
     private string $comentario;
 
-    function __get(string $name)
+    function __get(string  $name)
     {
         if (property_exists($this, $name)) {
             if ($name == "comentario"){

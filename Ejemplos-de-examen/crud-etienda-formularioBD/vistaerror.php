@@ -1,3 +1,6 @@
+<?php
+header("Refresh:3; url=acceso.html");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
