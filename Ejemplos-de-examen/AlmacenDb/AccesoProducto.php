@@ -46,6 +46,14 @@ class AccesoDatos
         return $resu;  
     }
 
+    public function actualizarPrecios(array $producto_no){
+        $stmt = $this -> dbh -> prepare("update productos set precio_actual = precio_actual - (precio_actual * 0.1) where producto_no =:pro_no and stock_disponible > 10");
+        
+        foreach($producto_no as $pro_no){
+            $stmt -> bindValue(":pro_no",$pro_no);
+            $stmt -> execute();
+        }
+    }
 
 
 
