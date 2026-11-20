@@ -4,36 +4,30 @@ require_once "Producto.php";
 
 $ac = AccesoDatos::initModelo();
 
-$tproductos = $ac->getProductos();
 $mensajeError = "";
 
 // Procesar POST si hay datos
 // Chequear cookie
-function revisarActualizaciones():string{
-    $msg = "";
-    $nactualizaciones = 0;
-    //['consultas'] no tieneque estar declarado en ningun lado entonces devuelve false;
-    if(isset($_COOKIE['consultas'])){
-        $nactualizaciones = $_COOKIE['consultas'];
-    }
-    if($nactualizaciones > 1){
+
+$msg = "";
+//['consultarCambios'] no tieneque estar declarado en ningun lado entonces devuelve false;
+if (isset($_POST['orden'])) {
+    if (isset($_COOKIE['consultarCambios'])) {
         $msg = "Lo sentimos, solo se puede realizar una actualización por dia";
+    } elseif (empty($_POST['tproductos'])) {
+        $mensajeError = " ERROR: Debes seleccionar los precios que quieres realizar la rebaja del 10%";
+    } else {
+        // Obtener la lista de productos
+        // -- PROCESAR EL FORMULARIO
+        setcookie("consultarCambios", date("d/m/Y"), time() + 3600 * 24);
+        $tProductoActualizar = $_POST['tproductos'];
+        // Actualizo los productos incluidos en la tabla
+        $ac->actualizarPrecios($tProductoActualizar);
+        $msg = "Productos actualizados correctamente";
     }
-    return $msg;
-}
-// Obtener la lista de productos
-// -- PROCESAR EL FORMULARIO
-if (!empty($_POST['tproductos'])) {
-    $mensajeError = "";
-    // Obtengo una tabla con los números de productos.
-    $tProductoActualizar = $_POST["tproductos"];
-    // Actualizo los productos incluidos en la tabla
-    $ac->actualizarPrecios($tProductoActualizar);
-    $tproductos = $ac->getProductos();
-} else {
-    $mensajeError = " ERROR: Debes seleccionar los precios que quieres realizar la rebaja del 10%";
 }
 
+$tproductos = $ac->getProductos();
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +44,7 @@ if (!empty($_POST['tproductos'])) {
             <h1>BAJAR PRECIOS PRODUCTOS SIN PEDIDOS</h1>
         </div>
         <div id="content">
-            <?= revisarActualizaciones() ?>
+            <?= $msg ?>
             <form name='entrada' method="post">
                 <table>
                     <tr>
@@ -69,8 +63,8 @@ if (!empty($_POST['tproductos'])) {
                             <td><?= $pro->descripcion  ?></td>
                             <td><?= $pro->stock_disponible ?></td>
                             <td><?= $pro->precio_actual ?></td>
-                        <tr>
-                        <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
 
                 </table>
                 <?= $mensajeError ?>

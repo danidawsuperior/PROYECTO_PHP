@@ -38,7 +38,7 @@ class AccesoDatos
 
     public function getProductos():array{
         $resu = [];
-        $stmt = $this->dbh->prepare("select * from productos");
+        $stmt = $this->dbh->prepare("select * from productos where stock_disponible > 10");
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Producto');
         if ( $stmt->execute()) {
             $resu = $stmt->fetchAll();    

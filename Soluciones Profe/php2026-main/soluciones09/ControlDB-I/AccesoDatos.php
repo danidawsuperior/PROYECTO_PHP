@@ -61,13 +61,13 @@ class AccesoDatos
 	public  function ckequearUsuario(String $usuario, String $clave):mixed
 	{
 
-		$objcli = false;
-                $stmt1 = $this->dbh->prepare("select * from clientes where nombre = ? and clave = ?");
-		$stmt1->bindValue(1, $usuario);
-		$stmt1->bindValue(2, $clave);
-		$stmt1->setFetchMode(PDO::FETCH_CLASS, 'Cliente');
-		if ( $stmt1->execute() ){
-			$objcli = $stmt1->fetch();
+		$objcli = null;
+        $stmt = $this->dbh->prepare("select * from clientes where nombre = :nombre and clave = :clave");
+		$stmt->bindValue(":nombre", $usuario);
+		$stmt->bindValue(":clave", $clave);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Cliente');
+		if ( $stmt->execute() ){
+			$objcli = $stmt->fetch();
 		}
 		
 		return $objcli;
@@ -85,24 +85,24 @@ class AccesoDatos
 	public function obtenerListaPedidos(int $cod_cliente): array
 	{
 		$listaresu = [];
-		$stmt2 = $this->dbh->prepare("select * from pedidos where cod_cliente = ?");
-		$stmt2->bindValue(1, $cod_cliente);
-		$stmt2->setFetchMode(PDO::FETCH_CLASS, 'Pedido');
-		if ($stmt2->execute() ){
-			$listaresu = $stmt2->fetchAll();
+		$stmt = $this->dbh->prepare("select * from pedidos where cod_cliente = ?");
+		$stmt->bindValue(1, $cod_cliente);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Pedido');
+		if ($stmt->execute() ){
+			$listaresu = $stmt->fetchAll();
 		}
 		return $listaresu;
 	}
 
 	/**
 	 *  Incremente el número de acceso de usuario
-	 *  @param String códiog del cliente
+	 *  @param String código del cliente
 	 */
 	public function incrementarVeces(int $codigo)
 	{
-		$stmt3 = $this->dbh->prepare("update clientes SET veces=veces+1 where cod_cliente= ?");
-		$stmt3->bindValue(1, $codigo);
-		$stmt3->execute();
+		$stmt = $this->dbh->prepare("update clientes SET veces=veces+1 where cod_cliente= ?");
+		$stmt->bindValue(1, $codigo);
+		$stmt->execute();
 	}
 
 
