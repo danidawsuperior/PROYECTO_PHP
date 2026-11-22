@@ -1,11 +1,34 @@
 <?php
-$contador = 0;
-function incrementar():int{
-    for ($i = 0; $i < 10; $i++) {
-        $contador += $i;
-    }
-    return $contador;
+session_start();
+
+if (!isset($_SESSION['contador'])) {
+    $_SESSION['contador'] = 100;
 }
+$anulada = false;
+$msg = "Valor del contador = " . $_SESSION['contador'];
+
+if (isset($_POST['orden'])) {
+$valor = $_POST['orden'];
+
+    switch ($valor) {
+        case 'Incrementar':
+            $_SESSION['contador']++;
+            $msg = "Valor del contador = " .$_SESSION['contador'];
+            break;
+        case 'Decrementar':
+            $_SESSION['contador']--;
+            $msg = "Valor del contador = " .$_SESSION['contador'];
+            break;
+        case 'Anular':
+            session_unset();
+            session_destroy();
+            $msg = "La sesion ha sido anulada ";
+            $anulada = true;
+            break;
+    }
+
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -19,13 +42,22 @@ function incrementar():int{
 
 <body>
     <h1>CONTADOR CON SESIÓN</h1>
-    <p>Valor del contador = <?= $contador ?> </p>
+    
     <form method="post">
-        <button type="submit" name="incrementar" > Incrementar </button>
-        <input type="button" value=" Recargar " onclick="location.reload();">
+        <?php if($anulada){ ?>
+            <p> <?= $msg ?> </p>
+            <a href="contadorsesion.php"><input type="button" value="Recargar" onclick="location.reload();"></a>
+
+        <?php } else {  ?>
+        <p> <?= $msg ?> </p>
+        <button type="submit" name="orden" value="Incrementar"> Incrementar </button>
+        <button type="submit" name="orden" value="Decrementar"> Decrementar </button>
+        <button type="submit" name="orden" value="Anular">Anular</button>
+        
+        <?php }?>
+
 
     </form>
-
 
 </body>
 
