@@ -53,7 +53,7 @@ $tproductos = $ac->obtenerListaProductos();
 							<td><?= $pro->descripcion  ?></td>
 							<td><?= $pro->stock_disponible ?></td>
 							<td><?= $pro->precio_actual ?></td>
-						</tr>
+						<tr>
 						<?php endforeach; ?>
 				</table>
 
