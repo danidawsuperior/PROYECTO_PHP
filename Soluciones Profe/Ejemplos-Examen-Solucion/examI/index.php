@@ -83,9 +83,7 @@ function checkOfertas(): string
         }
 
         button {
-            ";
-
-        }
+            
 
         /**
  *  Muestra un mensaje según el valor de plazas, si es menor de 10  devuelve 

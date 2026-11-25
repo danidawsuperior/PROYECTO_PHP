@@ -5,8 +5,8 @@
  * @return string - Texto asociado al valor del número
  */
 function verClase($num):string {
-     var_dump($num);
-     echo " Pasa ".$num;
+     //var_dump($num);
+     //echo " Pasa ".$num;
      static $tabla = [ "1" =>"Turista", "2" => "Bussines", "3"=>" First Class" ];
      return $tabla[$num];
 }
